@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo de Matemática - Profª Fernanda Ejiri</title>
+  
+  <!-- Fonte fofa do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #fdf6f9;
+      --card-bg: #ffffff;
+      --pink-accent: #ffb7c5;
+      --pink-dark: #ff758c;
+      --purple-accent: #c7ceea;
+      --purple-dark: #8282b8;
+      --text-main: #594a4e;
+      --border-radius: 18px;
+      --base-font-size: 16px;
+    }
+
+    /* Estilos do Modo Alto Contraste */
+    body.high-contrast {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --pink-accent: #ffb7c5;
+      --pink-dark: #ff80bf;
+      --purple-accent: #d1b3ff;
+      --purple-dark: #b388ff;
+      --text-main: #ffffff;
+      background-image: none !important;
+    }
+
+    body.high-contrast .container {
+      background: #1e1e1e;
+      border-color: #ffffff;
+      box-shadow: none;
+    }
+
+    body.high-contrast .box,
+    body.high-contrast .calc-box {
+      background: #2a2a2a;
+      border-color: #ffffff;
+      box-shadow: none;
+    }
+
+    body.high-contrast h3 {
+      color: #ff80bf;
+      border-bottom-color: #ffffff;
+    }
+
+    html {
+      font-size: var(--base-font-size);
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-color);
+      /* Padrão fofo de fundo em poá */
+      background-image: radial-gradient(#eec0c8 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: var(--text-main);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Barra de Acessibilidade */
+    .accessibility-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+      background: #ffffff;
+      border: 2px solid var(--pink-dark);
+      border-radius: 50px;
+      padding: 8px 18px;
+      margin-bottom: 25px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    body.high-contrast .accessibility-bar {
+      background: #2a2a2a;
+      border-color: #ffffff;
+    }
+
+    .accessibility-bar span {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--pink-dark);
+      margin-right: 5px;
+    }
+
+    body.high-contrast .accessibility-bar span {
+      color: #ffffff;
+    }
+
+    .btn-acc {
+      background: #fff0f5;
+      border: 2px solid var(--pink-accent);
+      color: var(--text-main);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-acc:hover, .btn-acc:focus {
+      background: var(--pink-dark);
+      color: #ffffff;
+      outline: none;
+      transform: scale(1.05);
+    }
+
+    body.high-contrast .btn-acc {
+      background: #333333;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    body.high-contrast .btn-acc:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: var(--border-radius);
+      padding: 35px 45px;
+      box-shadow: 0 10px 25px rgba(235, 178, 196, 0.3);
+      border: 3px solid #ffdeeb;
+      box-sizing: border-box;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--pink-dark);
+      font-size: 2.2rem;
+      margin: 10px 0;
+      text-shadow: 2px 2px 0px #ffe5ec;
+    }
+
+    body.high-contrast h1 {
+      text-shadow: none;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #92817a;
+      font-weight: 600;
+    }
+
+    body.high-contrast .subtitle {
+      color: #dddddd;
+    }
+
+    h2 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--purple-dark);
+      margin-top: 35px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .box {
+      background: var(--card-bg);
+      border: 2px solid #f2d6dc;
+      border-radius: var(--border-radius);
+      padding: 20px 25px;
+      margin-bottom: 25px;
+      box-shadow: 4px 4px 0px #ffedf2;
+      transition: transform 0.2s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-2px);
+    }
+
+    .box-with-illustration {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 650px) {
+      .box-with-illustration {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    h3 {
+      color: #e85d75;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      border-bottom: 2px dashed #ffd3dc;
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.5;
+    }
+
+    li::before {
+      content: "🌸";
+      position: absolute;
+      left: 0;
+      font-size: 0.85em;
+      top: 2px;
+    }
+
+    .illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .illustration svg {
+      width: 100%;
+      max-width: 160px;
+      height: auto;
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.05));
+    }
+
+    /* Estilos das Calculadoras Interativas */
+    .calc-box {
+      background: #fff8fa;
+      border: 2px dashed var(--pink-dark);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .calc-inputs {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .calc-inputs input, .calc-inputs select {
+      padding: 8px 12px;
+      border: 2px solid var(--purple-accent);
+      border-radius: 12px;
+      text-align: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      color: var(--text-main);
+      outline: none;
+      background: #ffffff;
+    }
+
+    .calc-inputs input {
+      width: 65px;
+    }
+
+    body.high-contrast .calc-inputs input,
+    body.high-contrast .calc-inputs select {
+      background: #333333;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .calc-inputs input:focus, .calc-inputs select:focus {
+      border-color: var(--pink-dark);
+    }
+
+    .btn-calc {
+      background: var(--pink-dark);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto;
+      transition: transform 0.2s;
+    }
+
+    .btn-calc:hover {
+      transform: scale(1.05);
+    }
+
+    .calc-result {
+      margin-top: 15px;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid var(--purple-accent);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    body.high-contrast .calc-result {
+      background: #1e1e1e;
+      border-color: #ffffff;
+    }
+
+    footer {
+      margin-top: 45px;
+      padding-top: 20px;
+      border-top: 2px dashed #ffc6d0;
+      text-align: right;
+      font-weight: 700;
+      color: #d85772;
+      font-size: 1.15rem;
+      line-height: 1.4;
+    }
+
+    footer span {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      color: var(--purple-dark);
+    }
+
+    /* Estilos otimizados para Impressão / Salvar PDF */
+    @media print {
+      .accessibility-bar, .btn-calc { display: none !important; }
+      body { background: none !important; padding: 0 !important; color: #000 !important; }
+      .container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+      .box, .calc-box { page-break-inside: avoid; border-color: #ccc !important; box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Ferramentas de Acessibilidade -->
+  <nav class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+    <span> </span>
+    <button class="btn-acc" onclick="changeFontSize(1)" aria-label="Aumentar tamanho do texto">A+</button>
+    <button class="btn-acc" onclick="changeFontSize(-1)" aria-label="Diminuir tamanho do texto">A-</button>
+    <button class="btn-acc" onclick="toggleContrast()" aria-label="Alternar modo de alto contraste">🌓 Contraste</button>
+    <button class="btn-acc" onclick="speakContent()" aria-label="Ouvir leitura da página em voz alta">🔊 Ouvir Página</button>
+    <button class="btn-acc" onclick="imprimirPagina()" aria-label="Imprimir ou salvar documento em PDF">🖨️ PDF / Imprimir</button>
+  </nav>
+
+  <main class="container" id="main-content">
+    
+    <header>
+      <h1>✨ Formulário de Matemática ✨</h1>
+      <p class="subtitle">Guia de estudo e consulta rápida 📝💖</p>
+    </header>
+
+    <h2><span>📏</span> 1. Geometria Plana e Espacial</h2>
+    <div class="box box-with-illustration">
+      <div>
+        <h3>Áreas de Figuras Planas</h3>
+        <ul>
+          <li><strong>Retângulo:</strong> \(A = b \cdot h\)</li>
+          <li><strong>Triângulo (Geral):</strong> \(A = \frac{b \cdot h}{2}\)</li>
+          <li><strong>Triângulo (Trigonométrico):</strong> \(A = \frac{a \cdot b \cdot \operatorname{sen}(\alpha)}{2}\)</li>
+          <li><strong>Triângulo (Determinante):</strong> \(A = \frac{1}{2} \cdot |D|\)</li>
+        </ul>
+        
+        <h3>Teorema de Pitágoras</h3>
+        <p>Em todo triângulo retângulo:</p>
+        $${a^2 = b^2 + c^2}$$
+      </div>
+
+      <!-- Ilustração SVG Fofa: Triângulo Sorridente -->
+      <div class="illustration" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="30,160 170,160 30,30" fill="#ffd1dc" stroke="#ff85a2" stroke-width="6" stroke-linejoin="round"/>
+          <circle cx="70" cy="120" r="5" fill="#594a4e"/>
+          <circle cx="110" cy="120" r="5" fill="#594a4e"/>
+          <path d="M 85 130 Q 90 138 95 130" fill="transparent" stroke="#594a4e" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="60" cy="125" rx="6" ry="4" fill="#ff99ac" opacity="0.6"/>
+          <ellipse cx="120" cy="125" rx="6" ry="4" fill="#ff99ac" opacity="0.6"/>
+          <path d="M 30,140 L 50,140 L 50,160" fill="none" stroke="#ff85a2" stroke-width="4"/>
+          <circle cx="40" cy="150" r="3" fill="#ff85a2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Calculadora de Pitágoras -->
+    <div class="calc-box" style="margin-bottom: 25px;">
+      <h3 style="margin-top:0;">📐 Calculadora de Pitágoras</h3>
+      <p style="font-size: 0.9rem;">Escolha o lado que deseja encontrar e informe os outros dois:</p>
+
+      <div class="calc-inputs">
+        <label for="pit-mod"><strong>Quero calcular:</strong></label>
+        <select id="pit-mod" onchange="atualizarInputsPitagoras()">
+          <option value="hipotenusa">Hipotenusa (a)</option>
+          <option value="catetoA">Cateto (b)</option>
+          <option value="catetoB">Cateto (c)</option>
+        </select>
+      </div>
+
+      <div class="calc-inputs" id="pit-fields">
+        <!-- Campos gerados dinamicamente via JS -->
+      </div>
+
+      <button class="btn-calc" onclick="calcularPitagoras()">Calcular Lado ✨</button>
+      <div class="calc-result" id="pit-result" style="display: none;"></div>
+    </div>
+
+    <div class="box">
+      <h3>Relações Métricas no Triângulo Retângulo</h3>
+      <p>Sendo \(a\) a hipotenusa, \(h\) a altura, \(b\) e \(c\) os catetos, e \(m\) e \(n\) as projeções:</p>
+      <ul>
+        <li>\(a \cdot h = b \cdot c\)</li>
+        <li>\(b^2 = a \cdot m \quad \text{e} \quad c^2 = a \cdot n\)</li>
+        <li>\(h^2 = m \cdot n\)</li>
+      </ul>
+    </div>
+
+    <h2><span>⭕</span> 2. Relações Métricas na Circunferência</h2>
+    <div class="box box-with-illustration">
+      <div>
+        <h3>Teorema das Cordas</h3>
+        <p>Quando duas cordas se cruzam internamente no ponto \(E\):</p>
+        $${AE \cdot EC = BE \cdot ED}$$
+      </div>
+
+      <!-- Ilustração SVG Fofa: Círculo Sorridente -->
+      <div class="illustration" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="75" fill="#c7ceea" stroke="#8282b8" stroke-width="6"/>
+          <line x1="45" y1="60" x2="155" y2="140" stroke="#8282b8" stroke-width="4" stroke-dasharray="6,6"/>
+          <line x1="45" y1="140" x2="155" y2="60" stroke="#8282b8" stroke-width="4" stroke-dasharray="6,6"/>
+          <circle cx="85" cy="85" r="5" fill="#594a4e"/>
+          <circle cx="115" cy="85" r="5" fill="#594a4e"/>
+          <path d="M 93 98 Q 100 106 107 98" fill="transparent" stroke="#594a4e" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="78" cy="92" rx="5" ry="3" fill="#ff99ac"/>
+          <ellipse cx="122" cy="92" rx="5" ry="3" fill="#ff99ac"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Calculadora do Teorema das Cordas -->
+    <div class="calc-box" style="margin-bottom: 25px;">
+      <h3 style="margin-top:0;">⭕ Calculadora do Teorema das Cordas</h3>
+      <p style="font-size: 0.9rem;">Insira três segmentos conhecidos da relação \(AE \cdot EC = BE \cdot ED\) para calcular o segmento restante:</p>
+      
+      <div class="calc-inputs">
+        <label for="corda-ae"><strong>AE:</strong></label>
+        <input type="number" id="corda-ae" placeholder="2" step="any">
+
+        <label for="corda-ec"><strong>EC:</strong></label>
+        <input type="number" id="corda-ec" placeholder="6" step="any">
+
+        <span style="margin: 0 5px;">=</span>
+
+        <label for="corda-be"><strong>BE:</strong></label>
+        <input type="number" id="corda-be" placeholder="3" step="any">
+
+        <label for="corda-ed"><strong>ED:</strong></label>
+        <input type="number" id="corda-ed" placeholder="x" step="any">
+      </div>
+
+      <button class="btn-calc" onclick="calcularCordas()">Calcular Segmento Faltante ✨</button>
+      <div class="calc-result" id="cordas-result" style="display: none;"></div>
+    </div>
+
+    <h2><span>📍</span> 3. Geometria Analítica</h2>
+    <div class="box">
+      <ul>
+        <li><strong>Distância entre Dois Pontos:</strong> \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\)</li>
+        <li><strong>Ponto Médio de um Segmento:</strong> \(M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)\)</li>
+      </ul>
+      
+      <!-- Calculadora de Distância entre Dois Pontos -->
+      <div class="calc-box">
+        <h3 style="margin-top:0;">📍 Calculadora de Distância entre Dois Pontos</h3>
+        <p style="font-size: 0.9rem;">Insira as coordenadas dos pontos \(A(x_1, y_1)\) e \(B(x_2, y_2)\):</p>
+        <div class="calc-inputs">
+          <label for="dist-x1"><strong>x₁:</strong></label>
+          <input type="number" id="dist-x1" placeholder="1" step="any">
+          
+          <label for="dist-y1"><strong>y₁:</strong></label>
+          <input type="number" id="dist-y1" placeholder="2" step="any">
+
+          <span style="margin: 0 5px;">|</span>
+
+          <label for="dist-x2"><strong>x₂:</strong></label>
+          <input type="number" id="dist-x2" placeholder="4" step="any">
+          
+          <label for="dist-y2"><strong>y₂:</strong></label>
+          <input type="number" id="dist-y2" placeholder="6" step="any">
+        </div>
+        <button class="btn-calc" onclick="calcularDistancia()">Calcular Distância ✨</button>
+        <div class="calc-result" id="dist-result" style="display: none;"></div>
+      </div>
+
+      <h3>Área de Polígonos por Determinante (Regra de Sarrus)</h3>
+      $${D = \begin{vmatrix} x_A & y_A & 1 \\ x_B & y_B & 1 \\ x_C & y_C & 1 \end{vmatrix} \implies \text{Área} = \frac{|D|}{2}}$$
+    </div>
+
+    <h2><span>✏️</span> 4. Álgebra e Equações de 2º Grau</h2>
+    <div class="box">
+      <h3>Produtos Notáveis e Fatoração</h3>
+      <ul>
+        <li><strong>Quadrado da Soma:</strong> \((a + b)^2 = a^2 + 2ab + b^2\)</li>
+        <li><strong>Quadrado da Diferença:</strong> \((a - b)^2 = a^2 - 2ab + b^2\)</li>
+        <li><strong>Diferença de Dois Quadrados:</strong> \(a^2 - b^2 = (a + b)(a - b)\)</li>
+        <li><strong>Simplificação Algébrica:</strong> \((a+b)^2 - (a-b)^2 = 4ab\)</li>
+      </ul>
+
+      <h3>Equação do 2º Grau (\(ax^2 + bx + c = 0\))</h3>
+      <p><strong>Fórmula de Bhaskara:</strong></p>
+      $${ \Delta = b^2 - 4ac \implies x = \frac{-b \pm \sqrt{\Delta}}{2a} }$$
+
+      <p><strong>Relações de Girard (Soma e Produto):</strong></p>
+      <ul>
+        <li><strong>Soma:</strong> \(S = x_1 + x_2 = -\frac{b}{a}\)</li>
+        <li><strong>Produto:</strong> \(P = x_1 \cdot x_2 = \frac{c}{a}\)</li>
+      </ul>
+
+      <!-- Calculadora de Bhaskara -->
+      <div class="calc-box">
+        <h3 style="margin-top:0;">🧮 Calculadora de Bhaskara Prática</h3>
+        <p style="font-size: 0.9rem;">Insira os coeficientes para calcular os valores de Delta e \(x\):</p>
+        <div class="calc-inputs">
+          <label for="coef-a"><strong>a:</strong></label>
+          <input type="number" id="coef-a" placeholder="1" step="any">
+          
+          <label for="coef-b"><strong>b:</strong></label>
+          <input type="number" id="coef-b" placeholder="-5" step="any">
+          
+          <label for="coef-c"><strong>c:</strong></label>
+          <input type="number" id="coef-c" placeholder="6" step="any">
+        </div>
+        <button class="btn-calc" onclick="calcularBhaskara()">Calcular Raízes ✨</button>
+        <div class="calc-result" id="calc-result" style="display: none;"></div>
+      </div>
+    </div>
+
+    <h2><span>🚀</span> 5. Potenciação e Notação Científica</h2>
+    <div class="box">
+      <p><strong>Notação Científica:</strong> \(a \cdot 10^k \quad \text{onde } 1 \le |a| < 10 \text{ e } k \in \mathbb{Z}\)</p>
+      
+      <h3>Propriedades das Potências</h3>
+      <ul>
+        <li><strong>Produto de mesma base:</strong> \(10^m \cdot 10^n = 10^{m+n}\)</li>
+        <li><strong>Divisão de mesma base:</strong> \(\frac{10^m}{10^n} = 10^{m-n}\)</li>
+        <li><strong>Expoente Negativo:</strong> \(x^{-n} = \frac{1}{x^n}\)</li>
+      </ul>
+    </div>
+
+    <footer>
+      Bons estudos! ✨<br>
+      <span>Profª: Fernanda Ejiri 🌸</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // Controle do Tamanho da Fonte
+    let currentFontSize = 16;
+    function changeFontSize(delta) {
+      currentFontSize = Math.min(Math.max(12, currentFontSize + delta * 2), 24);
+      document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+    }
+
+    // Controle de Contraste
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    // Leitura em Voz Alta (Speech Synthesis)
+    function speakContent() {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          return;
+        }
+        const textToRead = document.getElementById('main-content').innerText;
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Desculpe, seu navegador não suporta leitura de áudio.');
+      }
+    }
+
+    // Função de Impressão e Download em PDF
+    function imprimirPagina() {
+      window.print();
+    }
+
+    // --- CALCULADORA DE PITÁGORAS ---
+    function atualizarInputsPitagoras() {
+      const mode = document.getElementById('pit-mod').value;
+      const fields = document.getElementById('pit-fields');
+      
+      if (mode === 'hipotenusa') {
+        fields.innerHTML = `
+          <label for="pit-val1"><strong>Cateto (b):</strong></label>
+          <input type="number" id="pit-val1" placeholder="3" step="any">
+          <label for="pit-val2"><strong>Cateto (c):</strong></label>
+          <input type="number" id="pit-val2" placeholder="4" step="any">
+        `;
+      } else if (mode === 'catetoA') {
+        fields.innerHTML = `
+          <label for="pit-val1"><strong>Hipotenusa (a):</strong></label>
+          <input type="number" id="pit-val1" placeholder="5" step="any">
+          <label for="pit-val2"><strong>Cateto (c):</strong></label>
+          <input type="number" id="pit-val2" placeholder="4" step="any">
+        `;
+      } else {
+        fields.innerHTML = `
+          <label for="pit-val1"><strong>Hipotenusa (a):</strong></label>
+          <input type="number" id="pit-val1" placeholder="5" step="any">
+          <label for="pit-val2"><strong>Cateto (b):</strong></label>
+          <input type="number" id="pit-val2" placeholder="3" step="any">
+        `;
+      }
+    }
+
+    function calcularPitagoras() {
+      const mode = document.getElementById('pit-mod').value;
+      const val1 = parseFloat(document.getElementById('pit-val1').value);
+      const val2 = parseFloat(document.getElementById('pit-val2').value);
+      const resultDiv = document.getElementById('pit-result');
+
+      resultDiv.style.display = 'block';
+
+      if (isNaN(val1) || isNaN(val2) || val1 <= 0 || val2 <= 0) {
+        resultDiv.innerHTML = '⚠️ Insira valores numéricos válidos e maiores que zero.';
+        return;
+      }
+
+      let html = `<strong>Passo a passo:</strong><br>`;
+
+      if (mode === 'hipotenusa') {
+        const hip = Math.sqrt(val1 * val1 + val2 * val2);
+        html += `• a² = (${val1})² + (${val2})²<br>`;
+        html += `• a² = ${val1 * val1} + ${val2 * val2} = ${val1 * val1 + val2 * val2}<br>`;
+        html += `• a = √${val1 * val1 + val2 * val2}<br>`;
+        html += `• <strong>Hipotenusa (a) = ${hip.toFixed(2)}</strong>`;
+      } else {
+        if (val1 <= val2) {
+          resultDiv.innerHTML = '⚠️ A hipotenusa deve ser estritamente maior que o cateto conhecido.';
+          return;
+        }
+        const cat = Math.sqrt(val1 * val1 - val2 * val2);
+        html += `• cateto² = (${val1})² - (${val2})²<br>`;
+        html += `• cateto² = ${val1 * val1} - ${val2 * val2} = ${val1 * val1 - val2 * val2}<br>`;
+        html += `• cateto = √${val1 * val1 - val2 * val2}<br>`;
+        html += `• <strong>Cateto Procurado = ${cat.toFixed(2)}</strong>`;
+      }
+
+      resultDiv.innerHTML = html;
+    }
+
+    // Inicializar inputs de Pitágoras na carga da página
+    atualizarInputsPitagoras();
+
+    // --- CALCULADORA DO TEOREMA DAS CORDAS ---
+    function calcularCordas() {
+      const aeVal = document.getElementById('corda-ae').value.trim();
+      const ecVal = document.getElementById('corda-ec').value.trim();
+      const beVal = document.getElementById('corda-be').value.trim();
+      const edVal = document.getElementById('corda-ed').value.trim();
+      const resultDiv = document.getElementById('cordas-result');
+
+      resultDiv.style.display = 'block';
+
+      const inputs = [
+        { name: 'AE', val: aeVal, num: parseFloat(aeVal) },
+        { name: 'EC', val: ecVal, num: parseFloat(ecVal) },
+        { name: 'BE', val: beVal, num: parseFloat(beVal) },
+        { name: 'ED', val: edVal, num: parseFloat(edVal) }
+      ];
+
+      const vazios = inputs.filter(i => i.val === '' || isNaN(i.num));
+
+      if (vazios.length !== 1) {
+        resultDiv.innerHTML = '⚠️ Preencha exatamente <strong>três</strong> campos com números positivos e deixe <strong>um</strong> campo em branco para calcular.';
+        return;
+      }
+
+      if (inputs.some(i => i.val !== '' && !isNaN(i.num) && i.num <= 0)) {
+        resultDiv.innerHTML = '⚠️ Os comprimentos dos segmentos devem ser maiores que zero.';
+        return;
+      }
+
+      const desconhecido = vazios[0].name;
+      const ae = inputs[0].num;
+      const ec = inputs[1].num;
+      const be = inputs[2].num;
+      const ed = inputs[3].num;
+
+      let html = `<strong>Passo a passo (AE · EC = BE · ED):</strong><br>`;
+
+      if (desconhecido === 'ED') {
+        const res = (ae * ec) / be;
+        html += `• ${ae} · ${ec} = ${be} · ED<br>`;
+        html += `• ${ae * ec} = ${be} · ED<br>`;
+        html += `• ED = ${ae * ec} / ${be}<br>`;
+        html += `• <strong>ED = ${res.toFixed(2)}</strong>`;
+      } else if (desconhecido === 'BE') {
+        const res = (ae * ec) / ed;
+        html += `• ${ae} · ${ec} = BE · ${ed}<br>`;
+        html += `• ${ae * ec} = BE · ${ed}<br>`;
+        html += `• BE = ${ae * ec} / ${ed}<br>`;
+        html += `• <strong>BE = ${res.toFixed(2)}</strong>`;
+      } else if (desconhecido === 'EC') {
+        const res = (be * ed) / ae;
+        html += `• ${ae} · EC = ${be} · ${ed}<br>`;
+        html += `• ${ae} · EC = ${be * ed}<br>`;
+        html += `• EC = ${be * ed} / ${ae}<br>`;
+        html += `• <strong>EC = ${res.toFixed(2)}</strong>`;
+      } else if (desconhecido === 'AE') {
+        const res = (be * ed) / ec;
+        html += `• AE · ${ec} = ${be} · ${ed}<br>`;
+        html += `• AE · ${ec} = ${be * ed}<br>`;
+        html += `• AE = ${be * ed} / ${ec}<br>`;
+        html += `• <strong>AE = ${res.toFixed(2)}</strong>`;
+      }
+
+      resultDiv.innerHTML = html;
+    }
+
+    // --- CALCULADORA DE DISTÂNCIA ENTRE DOIS PONTOS ---
+    function calcularDistancia() {
+      const x1 = parseFloat(document.getElementById('dist-x1').value);
+      const y1 = parseFloat(document.getElementById('dist-y1').value);
+      const x2 = parseFloat(document.getElementById('dist-x2').value);
+      const y2 = parseFloat(document.getElementById('dist-y2').value);
+      const resultDiv = document.getElementById('dist-result');
+
+      resultDiv.style.display = 'block';
+
+      if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+        resultDiv.innerHTML = '⚠️ Preencha as coordenadas de ambos os pontos (x₁, y₁, x₂, y₂).';
+        return;
+      }
+
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const dx2 = dx * dx;
+      const dy2 = dy * dy;
+      const soma = dx2 + dy2;
+      const distancia = Math.sqrt(soma);
+
+      let html = `<strong>Passo a passo:</strong><br>`;
+      html += `• d = √[(${x2} - ${x1})² + (${y2} - ${y1})²]<br>`;
+      html += `• d = √[(${dx})² + (${dy})²]<br>`;
+      html += `• d = √[${dx2} + ${dy2}] = √${soma}<br>`;
+      html += `• <strong>Distância d = ${distancia.toFixed(2)}</strong>`;
+
+      resultDiv.innerHTML = html;
+    }
+
+    // --- CALCULADORA DE BHASKARA ---
+    function calcularBhaskara() {
+      const a = parseFloat(document.getElementById('coef-a').value);
+      const b = parseFloat(document.getElementById('coef-b').value);
+      const c = parseFloat(document.getElementById('coef-c').value);
+      const resultDiv = document.getElementById('calc-result');
+
+      resultDiv.style.display = 'block';
+
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        resultDiv.innerHTML = '⚠️ Por favor, preencha todos os três coeficientes (a, b e c).';
+        return;
+      }
+
+      if (a === 0) {
+        resultDiv.innerHTML = '⚠️ O coeficiente <strong>a</strong> precisa ser diferente de zero para ser uma equação do 2º grau.';
+        return;
+      }
+
+      const delta = (b * b) - (4 * a * c);
+
+      let html = `<strong>Passo a passo:</strong><br>`;
+      html += `• Delta (Δ) = (${b})² - 4 · (${a}) · (${c}) = <strong>${delta}</strong><br>`;
+
+      if (delta < 0) {
+        html += `• Como Δ < 0, a equação <strong>não possui raízes reais</strong> (x ∉ ℝ).`;
+      } else if (delta === 0) {
+        const x = -b / (2 * a);
+        html += `• Como Δ = 0, a equação possui <strong>uma única raiz real</strong>:<br>`;
+        html += `• <strong>x = ${x.toFixed(2)}</strong>`;
+      } else {
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        html += `• Como Δ > 0, a equação possui <strong>duas raízes reais distintas</strong>:<br>`;
+        html += `• <strong>x₁ = ${x1.toFixed(2)}</strong><br>`;
+        html += `• <strong>x₂ = ${x2.toFixed(2)}</strong>`;
+      }
+
+      resultDiv.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+/* Estilos otimizados para Impressão / Salvar PDF */
+    @media print {
+      /* Oculta a barra de acessibilidade, botões e calculadoras interativas */
+      .accessibility-bar, .btn-calc, .calc-box { 
+        display: none !important; 
+      }
+
+      body { 
+        background: none !important; 
+        padding: 0 !important; 
+        color: #000 !important; 
+      }
+
+      .container { 
+        box-shadow: none !important; 
+        border: none !important; 
+        width: 100% !important; 
+        max-width: 100% !important; 
+        padding: 0 !important; 
+      }
+
+      .box { 
+        page-break-inside: avoid; 
+        border-color: #ddd !important; 
+        box-shadow: none !important; 
+      }
+    }
